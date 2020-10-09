@@ -10,9 +10,13 @@ namespace BracketCompare
     {
         private static void Main(string[] args)
         {
+            string input;
             bracketChecker checker = new bracketChecker();
-            string input = Console.ReadLine();
-            Console.WriteLine(checker.CorrectBracketOrder(input) ? "correct" : "invalid");
+            do
+            {
+                input = Console.ReadLine();
+                Console.WriteLine(checker.CorrectBracketOrder(input) ? "correct" : "invalid");
+            } while (input != "x");
         }
     }
 
@@ -20,15 +24,16 @@ namespace BracketCompare
     internal class bracketChecker
     {
         //Varriables
+        //The brackets (opening one and after that is the closing one)
         private char[] bracketchars = new char[] { '(', ')', '<', '>', '[', ']', '{', '}' };
 
+        //Dictionary where the program stores the pairs (for easier access)
         private Dictionary<char, char> pairs = new Dictionary<char, char>();
-        private Stack<char> brackets = new Stack<char>();
 
         //Constructor
         public bracketChecker()
         {
-            for (int i = 0; i < bracketchars.Length / 2; i += 2)
+            for (int i = 0; i < bracketchars.Length; i += 2)
             {
                 pairs.Add(bracketchars[i + 1], bracketchars[i]);
             }//for
@@ -37,6 +42,7 @@ namespace BracketCompare
         //Checks if the brackets in the input are correct in order (if it is not closed it's incorrect same with clasing nothing)
         public bool CorrectBracketOrder(string input)
         {
+            Stack<char> brackets = new Stack<char>();
             //Go through the input string
             for (int i = 0; i < input.Length; i++)
             {
