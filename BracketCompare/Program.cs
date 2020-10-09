@@ -30,6 +30,7 @@ namespace BracketCompare
         //Dictionary where the program stores the pairs (for easier access)
         private Dictionary<char, char> pairs = new Dictionary<char, char>();
 
+        //------------------------------------------------------------------------------
         //Constructor
         public bracketChecker()
         {
@@ -39,6 +40,7 @@ namespace BracketCompare
             }//for
         }
 
+        //-----------------------------------------------------------------------------
         //Checks if the brackets in the input are correct in order (if it is not closed it's incorrect same with clasing nothing)
         public bool CorrectBracketOrder(string input)
         {
